@@ -19,19 +19,12 @@ function resolveVariables(map) {
       if (!map.hasOwnProperty(key)) {
         throw new Error(`Key not found in the map: ${key}`);
       }
-      // If the value of the key is not a string, throw an exception
-      if (typeof map[key] !== "string") {
-        throw new Error(`Invalid value for key: ${key}`);
-      }
       // Substitute the variable with its value and resolve the resulting string
       return resolve(str.replace(`\${${key}}`, map[key]), [...usedKeys, key]);
     }
   
     // Iterate over the keys in the map and resolve their variables
     for (const key in map) {  
-      if (!map.hasOwnProperty(key)) {
-        throw new Error(`Key not found in the map: ${key}`);
-      }
       // If the value of the key is not a string, throw an exception
       if (typeof map[key] !== "string") {
         throw new Error(`Invalid value for key: ${key}`);
